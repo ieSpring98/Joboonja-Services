@@ -9,7 +9,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         skills = [
             'HTML', 'CSS', 'Javascript', 'Django', 'Nodejs', 'React', 'C++', 'Python', 'Java', 'Photoshop', 'MySQL'
-            , 'C', 'Linux'
+            , 'C', 'Linux', 'PHP'
         ]
         Skill.objects.all().delete()
         Skill.objects.bulk_create([

@@ -21,7 +21,7 @@ class ProjectSerializer(serializers.ModelSerializer):
         return result
 
     def get_deadline(self, obj):
-        return obj.deadline.timestamp()
+        return round(obj.deadline.timestamp() * 1000)
 
 
     class Meta:
