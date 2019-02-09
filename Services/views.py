@@ -1,3 +1,4 @@
+from rest_framework.renderers import JSONRenderer
 from rest_framework.response import Response
 from rest_framework.viewsets import ViewSet
 
@@ -6,6 +7,8 @@ from Services.serializers import SkillSerializer, ProjectSerializer
 
 
 class ServicesView(ViewSet):
+    renderer_classes = (JSONRenderer,)
+
     def get_skills(self, request):
         skills = Skill.objects.all()
         return Response(SkillSerializer(skills, many=True).data)
