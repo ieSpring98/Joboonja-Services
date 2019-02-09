@@ -23,7 +23,6 @@ class ProjectSerializer(serializers.ModelSerializer):
     def get_deadline(self, obj):
         return round(obj.deadline.timestamp() * 1000)
 
-
     class Meta:
         model = Project
-        fields = ('id', 'name', 'description', 'imageUrl', 'budget', 'deadline', 'skills')
+        fields = ('id', 'title', 'description', 'imageUrl', 'budget', 'deadline', 'skills')
