@@ -6,8 +6,12 @@ from Services.models import Skill, Project
 from Services.serializers import SkillSerializer, ProjectSerializer
 
 
+class CustomJSONRenderer(JSONRenderer):
+    charset = 'utf-8'
+
+
 class ServicesView(ViewSet):
-    renderer_classes = (JSONRenderer,)
+    renderer_classes = (CustomJSONRenderer,)
 
     def get_skills(self, request):
         skills = Skill.objects.all()
