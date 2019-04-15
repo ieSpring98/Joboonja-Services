@@ -30,7 +30,7 @@ class Command(BaseCommand):
             print("\t", skill)
             ProjectSkill.objects.create(skill=Skill.objects.get(name=skill), point=random.randint(1, 3), project=instance)
 
-        delete_old_projects(keep_count=20)
+        delete_old_projects(keep_count=30)
 
 
 def delete_old_projects(keep_count):
