@@ -10,6 +10,7 @@ class Command(BaseCommand):
     help = "Add a project"
 
     def handle(self, *args, **options):
+        print("available projects: {}".format(Project.objects.all().count()))
         print("creating a project at", datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
 
         project = get_a_project()
@@ -27,7 +28,16 @@ class Command(BaseCommand):
         print("skills:")
         for skill in project["skills"]:
             print("\t", skill)
-            ProjectSkill.objects.create(skill=Skill.objects.get(name=skill), point=random.randint(1, 5), project=instance)
+            ProjectSkill.objects.create(skill=Skill.objects.get(name=skill), point=random.randint(1, 3), project=instance)
+
+        delete_old_projects(keep_count=20)
+
+
+def delete_old_projects(keep_count):
+    old_projects = Project.objects.order_by("-creationDate")[keep_count:]
+    print("removing {} old projects".format(len(old_projects)))
+    for project in old_projects:
+        project.delete()
 
 
 def get_an_image():

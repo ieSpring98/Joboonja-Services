@@ -18,6 +18,5 @@ class ServicesView(ViewSet):
         return Response(SkillSerializer(skills, many=True).data)
 
     def get_projects(self, request):
-        projects = Project.objects.all()
+        projects = Project.objects.order_by('-creationDate')
         return Response(ProjectSerializer(projects, many=True).data)
-

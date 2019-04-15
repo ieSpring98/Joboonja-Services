@@ -12,6 +12,7 @@ class SkillSerializer(serializers.ModelSerializer):
 class ProjectSerializer(serializers.ModelSerializer):
     skills = serializers.SerializerMethodField()
     deadline = serializers.SerializerMethodField()
+    creationDate = serializers.SerializerMethodField()
 
     def get_skills(self, obj):
         result = [{
@@ -23,6 +24,9 @@ class ProjectSerializer(serializers.ModelSerializer):
     def get_deadline(self, obj):
         return round(obj.deadline.timestamp() * 1000)
 
+    def get_creationDate(self, obj):
+        return round(obj.creationDate.timestamp() * 1000)
+
     class Meta:
         model = Project
-        fields = ('id', 'title', 'description', 'imageUrl', 'budget', 'deadline', 'skills')
+        fields = ('id', 'title', 'description', 'imageUrl', 'budget', 'deadline', 'creationDate', 'skills')
